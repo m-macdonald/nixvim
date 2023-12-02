@@ -431,6 +431,12 @@ with lib; let
       cmd = cfg: ["${cfg.package}/bin/nu" "--lsp"];
     }
     {
+      name = "ocaml-lsp";
+      description = "Enable ocaml-lsp, for OCaml";
+      package = pkgs.ocamlPackages.ocaml-lsp;
+      serverName = "ocamllsp";
+    }
+    {
       name = "ols";
       description = "ols for the Odin programming language";
       package = pkgs.ols;
@@ -637,6 +643,7 @@ in {
       ./ccls.nix
       ./efmls-configs.nix
       ./nixd.nix
+      ./ocaml-lsp.nix
       ./pylsp.nix
       ./rust-analyzer.nix
       ./svelte.nix
