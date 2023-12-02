@@ -373,6 +373,12 @@ with lib; let
       settings = cfg: {nixd = cfg;};
     }
     {
+      name = "ocaml-lsp";
+      description = "Enable ocaml-lsp, for OCaml";
+      package = pkgs.ocamlPackages.ocaml-lsp;
+      serverName = "ocamllsp";
+    }
+    {
       name = "omnisharp";
       description = "Enable omnisharp language server, for C#";
       package = pkgs.omnisharp-roslyn;
@@ -544,6 +550,7 @@ in {
       ./ccls.nix
       ./efmls-configs.nix
       ./nixd.nix
+      ./ocaml-lsp.nix
       ./pylsp.nix
       ./rust-analyzer.nix
       ./svelte.nix
