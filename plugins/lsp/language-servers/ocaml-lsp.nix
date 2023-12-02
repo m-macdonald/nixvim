@@ -5,9 +5,9 @@
   ...
 }:
 with lib; let
-  cfg = config.plugins.lsp.servers.ocamllsp;
+  cfg = config.plugins.lsp.servers.ocaml-lsp;
 in {
-  options.plugins.lsp.servers.ocamllsp = {
+  options.plugins.lsp.servers.ocaml-lsp = {
     ocamlformatPackage = mkOption {
       type = types.package;
       default = pkgs.ocamlformat;
@@ -15,7 +15,7 @@ in {
     };
   };
 
-  config = {
+  config = mkIf cfg.enable {
     extraPackages = [cfg.ocamlformatPackage];
   };
 }
