@@ -7,7 +7,7 @@
 }:
 with lib; {
   options.plugins.gitlinker =
-    helpers.extraOptionsOptions
+    helpers.neovim-plugin.extraOptionsOptions
     // {
       enable = mkEnableOption "gitlinker.nvim";
 
@@ -20,7 +20,7 @@ with lib; {
       '';
 
       actionCallback =
-        helpers.defaultNullOpts.mkNullable (with types; either str helpers.rawType)
+        helpers.defaultNullOpts.mkNullable (with types; either str helpers.nixvimTypes.rawLua)
         "copy_to_clipboard"
         ''
           Callback for what to do with the url.
@@ -47,7 +47,7 @@ with lib; {
             (
               either
               str
-              helpers.rawType
+              helpers.nixvimTypes.rawLua
             )
         )
         ''

@@ -5,11 +5,11 @@
 } @ attrs: let
   helpers = import ../helpers.nix {inherit lib;};
 in
-  with helpers;
+  with helpers.vim-plugin;
   with lib;
-    mkPlugin attrs {
+    mkVimPlugin attrs {
       name = "nix";
-      description = "Enable nix";
+      description = "vim-nix";
       package = pkgs.vimPlugins.vim-nix;
 
       # Possibly add option to disable Treesitter highlighting if this is installed

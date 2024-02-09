@@ -6,10 +6,9 @@
   helpers = import ../helpers.nix {inherit lib;};
 in
   with lib;
-  with helpers;
-    mkPlugin args {
+  with helpers.vim-plugin;
+    mkVimPlugin args {
       name = "startify";
-      description = "Enable startify";
       package = pkgs.vimPlugins.vim-startify;
       globalPrefix = "startify_";
 

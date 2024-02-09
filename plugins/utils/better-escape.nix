@@ -9,7 +9,7 @@ with lib; let
   cfg = config.plugins.better-escape;
 in {
   options.plugins.better-escape =
-    helpers.extraOptionsOptions
+    helpers.neovim-plugin.extraOptionsOptions
     // {
       enable = mkEnableOption "better-escape.nvim";
 
@@ -20,11 +20,7 @@ in {
       '';
 
       timeout =
-        helpers.defaultNullOpts.mkNullable
-        (
-          with types;
-            either ints.unsigned str
-        )
+        helpers.defaultNullOpts.mkStrLuaOr types.ints.unsigned
         "vim.o.timeoutlen"
         ''
           The time in which the keys must be hit in ms.
@@ -39,7 +35,7 @@ in {
         helpers.defaultNullOpts.mkNullable
         (
           with types;
-            either str helpers.rawType
+            either str helpers.nixvimTypes.rawLua
         )
         "<ESC>"
         ''
@@ -58,11 +54,7 @@ in {
   config = let
     setupOptions = with cfg;
       {
-        inherit mapping;
-        timeout =
-          if isString timeout
-          then helpers.mkRaw timeout
-          else timeout;
+        inherit mapping timeout;
         clear_empty_lines = clearEmptyLines;
         inherit keys;
       }

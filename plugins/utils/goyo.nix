@@ -5,11 +5,11 @@
 } @ attrs: let
   helpers = import ../helpers.nix {inherit lib;};
 in
-  with helpers;
+  with helpers.vim-plugin;
   with lib;
-    mkPlugin attrs {
+    mkVimPlugin attrs {
       name = "goyo";
-      description = "Enable goyo.vim";
+      description = "goyo.vim";
       package = pkgs.vimPlugins.goyo-vim;
       globalPrefix = "goyo_";
 

@@ -1,6 +1,6 @@
 <h2 align="center">
   <picture>
-    <img src="assets/nixvim_logo.png" />
+    <img src="assets/nixvim_logo.svg" width="25%" />
   </picture>
 
   <a href="https://nix-community.github.io/nixvim">Documentation</a> |
@@ -8,6 +8,10 @@
 </h2>
 
 # NixVim - A Neovim configuration system for nix
+
+- [Quick set up tutorial](https://www.youtube.com/watch?v=b641h63lqy0) (by [@Vimjoyer](https://www.youtube.com/@vimjoyer))
+- [Nixvim: How to configure Neovim with the power of Nix](https://www.youtube.com/watch?v=GOe0C7Qtypk) (NeovimConf 2023 talk by [@GaetanLepage](https://glepage.com/))
+
 ## What is it?
 NixVim is a [Neovim](https://neovim.io) distribution built around
 [Nix](https://nixos.org) modules. It is distributed as a Nix flake, and
@@ -141,27 +145,38 @@ can use the following:
   description = "A very basic flake";
 
   inputs.nixvim.url = "github:nix-community/nixvim";
-  inputs.flake-utils.url = "github:numtide/flake-utils";
 
   outputs = {
     self,
-    nixpkgs,
     nixvim,
-    flake-utils,
-  }: let
+    flake-parts,
+  } @ inputs: let
     config = {
       colorschemes.gruvbox.enable = true;
     };
   in
-    flake-utils.lib.eachDefaultSystem (system: let
-	  nixvim' = nixvim.legacyPackages."${system}";
-      nvim = nixvim'.makeNixvim config;
-    in {
-      packages = {
-        inherit nvim;
-        default = nvim;
+    flake-parts.lib.mkFlake {inherit inputs;} {
+      systems = [
+        "aarch64-darwin"
+        "aarch64-linux"
+        "x86_64-darwin"
+        "x86_64-linux"
+      ];
+
+      perSystem = {
+        pkgs,
+        system,
+        ...
+      }: let
+        nixvim' = nixvim.legacyPackages."${system}";
+        nvim = nixvim'.makeNixvim config;
+      in {
+        packages = {
+          inherit nvim;
+          default = nvim;
+        };
       };
-    });
+    };
 }
 ```
 </details>
@@ -404,10 +419,10 @@ provided:
 ```nix
 {
   programs.nixvim = {
-    extraConfigLua = '''
+    extraConfigLua = ''
       -- Print a little welcome message when nvim is opened!
       print("Hello world!")
-    ''';
+    '';
   };
 }
 ```

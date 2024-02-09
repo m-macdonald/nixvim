@@ -21,6 +21,7 @@ with lib; let
       beautysh
       biome
       black
+      buf
       cbfmt
       checkmake
       clazy
@@ -33,6 +34,7 @@ with lib; let
       dprint
       fish
       flawfinder
+      fnlfmt
       gcc
       gitlint
       gofumpt
@@ -47,6 +49,7 @@ with lib; let
       nixfmt
       php
       prettierd
+      prettypst
       proselint
       protolint
       pylint
@@ -59,6 +62,7 @@ with lib; let
       shellharden
       shfmt
       smlfmt
+      sqlfluff
       statix
       stylua
       taplo
@@ -68,11 +72,40 @@ with lib; let
       yamllint
       yapf
       ;
-    inherit (python3.pkgs) autopep8 flake8 vulture mdformat;
-    inherit (nodePackages) eslint eslint_d prettier alex stylelint textlint write-good;
-    inherit (phpPackages) phpcbf phan phpcs phpstan psalm;
-    inherit (luaPackages) luacheck;
-    inherit (haskellPackages) fourmolu;
+    inherit
+      (python3.pkgs)
+      autopep8
+      flake8
+      mdformat
+      vulture
+      ;
+    inherit
+      (nodePackages)
+      eslint
+      eslint_d
+      prettier
+      alex
+      sql-formatter
+      stylelint
+      textlint
+      write-good
+      ;
+    inherit
+      (phpPackages)
+      phpcbf
+      phan
+      phpcs
+      phpstan
+      psalm
+      ;
+    inherit
+      (luaPackages)
+      luacheck
+      ;
+    inherit
+      (haskellPackages)
+      fourmolu
+      ;
     ansible_lint = ansible-lint;
     chktex = texliveMedium;
     clang_format = clang-tools;
@@ -157,7 +190,7 @@ in {
       miscFormatters = languageTools "misc" "formatters";
 
       mkChooseOption = lang: kind: possible: let
-        toolType = with types; either (enum possible) helpers.rawType;
+        toolType = with types; either (enum possible) helpers.nixvimTypes.rawLua;
       in
         mkOption {
           type = with types; either toolType (listOf toolType);
@@ -251,7 +284,7 @@ in {
       extraPlugins = [cfg.package];
 
       warnings = optional ((builtins.length nixvimPkgs.wrong) > 0) ''
-        Following tools are not handled by nixvim, please add them to externallyManagedPackages to silence this:
+        Nixvim (plugins.efmls-configs): Following tools are not handled by nixvim, please add them to externallyManagedPackages to silence this:
           ${builtins.concatStringsSep " " nixvimPkgs.wrong}
       '';
 

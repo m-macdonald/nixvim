@@ -9,7 +9,7 @@ with lib; let
   cfg = config.plugins.nvim-jdtls;
 in {
   options.plugins.nvim-jdtls =
-    helpers.extraOptionsOptions
+    helpers.neovim-plugin.extraOptionsOptions
     // {
       enable = mkEnableOption "nvim-jdtls";
 
@@ -63,7 +63,7 @@ in {
 
       rootDir =
         helpers.defaultNullOpts.mkNullable
-        (types.either types.str helpers.rawType)
+        (types.either types.str helpers.nixvimTypes.rawLua)
         ''{ __raw = "require('jdtls.setup').find_root({'.git', 'mvnw', 'gradlew'})"; }''
         ''
           This is the default if not provided, you can remove it. Or adjust as needed.

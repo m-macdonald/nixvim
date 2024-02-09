@@ -11,10 +11,9 @@ with lib; let
   in
     either strInt (attrsOf (either strInt (attrsOf strInt)));
 in
-  with helpers;
-    mkPlugin attrs {
+  with helpers.vim-plugin;
+    mkVimPlugin attrs {
       name = "emmet";
-      description = "Enable emmet";
       package = pkgs.vimPlugins.emmet-vim;
       globalPrefix = "user_emmet_";
 

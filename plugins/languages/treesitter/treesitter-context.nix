@@ -9,7 +9,7 @@ with lib; let
   cfg = config.plugins.treesitter-context;
 in {
   options.plugins.treesitter-context =
-    helpers.extraOptionsOptions
+    helpers.neovim-plugin.extraOptionsOptions
     // {
       enable = mkEnableOption "nvim-treesitter-context";
 
@@ -50,7 +50,7 @@ in {
         The Z-index of the context window.
       '';
 
-      onAttach = helpers.mkNullOrOption types.str ''
+      onAttach = helpers.defaultNullOpts.mkLuaFn "nil" ''
         The implementation of a lua function which takes an integer `buf` as parameter and returns a
         boolean.
         Return `false` to disable attaching.
@@ -70,7 +70,7 @@ in {
           separator
           zindex
           ;
-        on_attach = helpers.mkRaw onAttach;
+        on_attach = onAttach;
       }
       // cfg.extraOptions;
   in

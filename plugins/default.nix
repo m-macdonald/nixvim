@@ -16,10 +16,12 @@
     ./colorschemes/one.nix
     ./colorschemes/onedark.nix
     ./colorschemes/oxocarbon.nix
+    ./colorschemes/palette.nix
     ./colorschemes/poimandres.nix
     ./colorschemes/rose-pine.nix
     ./colorschemes/tokyonight.nix
 
+    ./completion/codeium-vim.nix
     ./completion/copilot-lua.nix
     ./completion/copilot-vim.nix
     ./completion/coq.nix
@@ -43,6 +45,9 @@
     ./git/neogit.nix
 
     ./languages/clangd-extensions.nix
+    ./languages/debugprint.nix
+    ./languages/haskell-scope-highlighting.nix
+    ./languages/helm.nix
     ./languages/julia/julia-cell.nix
     ./languages/lean.nix
     ./languages/ledger.nix
@@ -52,17 +57,20 @@
     ./languages/nvim-jdtls.nix
     ./languages/openscad.nix
     ./languages/plantuml-syntax.nix
-    ./languages/rust.nix
+    ./languages/rust-tools.nix
+    ./languages/rustaceanvim.nix
     ./languages/sniprun.nix
     ./languages/tagbar.nix
+    ./languages/treesitter/hmts.nix
     ./languages/treesitter/rainbow-delimiters.nix
-    ./languages/treesitter/treesitter.nix
     ./languages/treesitter/treesitter-context.nix
     ./languages/treesitter/treesitter-playground.nix
     ./languages/treesitter/treesitter-refactor.nix
     ./languages/treesitter/treesitter-textobjects.nix
+    ./languages/treesitter/treesitter.nix
     ./languages/treesitter/ts-autotag.nix
     ./languages/treesitter/ts-context-commentstring.nix
+    ./languages/typescript-tools.nix
     ./languages/typst/typst-vim.nix
     ./languages/vim-slime.nix
     ./languages/vimtex.nix
@@ -77,6 +85,7 @@
     ./lsp/lsp-lines.nix
     ./lsp/nvim-lightbulb.nix
     ./lsp/trouble.nix
+    ./lsp/wtf.nix
 
     ./none-ls
 
@@ -84,6 +93,7 @@
 
     ./pluginmanagers/packer.nix
 
+    ./snippets/friendly-snippets.nix
     ./snippets/luasnip
 
     ./statuslines/airline.nix
@@ -92,12 +102,15 @@
 
     ./telescope
 
+    ./ui/image.nix
     ./ui/noice.nix
 
     ./utils/alpha.nix
     ./utils/auto-save.nix
     ./utils/auto-session.nix
+    ./utils/autoclose.nix
     ./utils/better-escape.nix
+    ./utils/clipboard-image.nix
     ./utils/comment-nvim.nix
     ./utils/commentary.nix
     ./utils/conjure.nix
@@ -112,7 +125,6 @@
     ./utils/goyo.nix
     ./utils/hardtime.nix
     ./utils/harpoon.nix
-    ./utils/hmts.nix
     ./utils/illuminate.nix
     ./utils/indent-blankline.nix
     ./utils/instant.nix
@@ -121,30 +133,35 @@
     ./utils/leap.nix
     ./utils/magma-nvim.nix
     ./utils/mark-radar.nix
+    ./utils/marks.nix
     ./utils/mini.nix
     ./utils/mkdnflow.nix
     ./utils/molten.nix
     ./utils/multicursors.nix
     ./utils/navbuddy.nix
-    ./utils/neorg.nix
     ./utils/neogen.nix
-    ./utils/notify.nix
+    ./utils/neorg.nix
     ./utils/netman.nix
     ./utils/nix-develop.nix
+    ./utils/notify.nix
     ./utils/nvim-autopairs.nix
     ./utils/nvim-bqf.nix
     ./utils/nvim-colorizer.nix
     ./utils/nvim-osc52.nix
     ./utils/nvim-ufo.nix
+    ./utils/obsidian.nix
     ./utils/oil.nix
+    ./utils/ollama.nix
     ./utils/persistence.nix
-    ./utils/project-nvim.nix
-    ./utils/refactoring.nix
     ./utils/presence-nvim.nix
+    ./utils/project-nvim.nix
     ./utils/quickmath.nix
+    ./utils/refactoring.nix
+    ./utils/rest.nix
     ./utils/specs.nix
     ./utils/spider.nix
     ./utils/startify.nix
+    ./utils/startup.nix
     ./utils/surround.nix
     ./utils/tmux-navigator.nix
     ./utils/todo-comments.nix
@@ -154,6 +171,7 @@
     ./utils/vim-matchup.nix
     ./utils/which-key.nix
     ./utils/wilder.nix
+    ./utils/yanky.nix
     ./utils/zk.nix
   ];
 }

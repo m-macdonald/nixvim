@@ -5,18 +5,19 @@
 } @ attrs: let
   helpers = import ../helpers.nix {inherit lib;};
 in
-  with helpers;
+  with helpers.vim-plugin;
   with lib;
-    mkPlugin attrs {
+    mkVimPlugin attrs {
       name = "zig";
-      description = "Enable zig";
+      description = "zig.vim";
       package = pkgs.vimPlugins.zig-vim;
+      globalPrefix = "zig_";
 
       # Possibly add option to disable Treesitter highlighting if this is installed
       options = {
         formatOnSave = mkDefaultOpt {
           type = types.bool;
-          global = "zig_fmt_autosave";
+          global = "fmt_autosave";
           description = "Run zig fmt on save";
         };
       };

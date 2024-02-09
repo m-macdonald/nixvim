@@ -5,11 +5,11 @@
 } @ attrs: let
   helpers = import ../helpers.nix {inherit lib;};
 in
-  with helpers;
+  with helpers.vim-plugin;
   with lib;
-    mkPlugin attrs {
+    mkVimPlugin attrs {
       name = "surround";
-      description = "Enable surround.vim";
+      description = "surround.vim";
       package = pkgs.vimPlugins.surround;
 
       options = {};

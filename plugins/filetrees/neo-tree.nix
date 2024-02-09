@@ -47,7 +47,7 @@ in {
       '';
     };
   in
-    helpers.extraOptionsOptions
+    helpers.neovim-plugin.extraOptionsOptions
     // {
       enable = mkEnableOption "neo-tree";
 
@@ -153,7 +153,7 @@ in {
         "Used when sorting files and directories in the tree";
 
       sortFunction =
-        helpers.defaultNullOpts.mkStr "nil"
+        helpers.defaultNullOpts.mkLuaFn "nil"
         "Uses a custom function for sorting files and directories in the tree";
 
       usePopupsForInput =
@@ -769,8 +769,8 @@ in {
           "This is determined automatically, you probably don't need to set it";
 
         findArgs =
-          helpers.mkNullOrOption
-          (types.either types.str (types.submodule {
+          helpers.mkNullOrStrLuaFnOr
+          (types.submodule {
             options = {
               fd =
                 helpers.defaultNullOpts.mkNullable (types.listOf types.str)
@@ -784,7 +784,7 @@ in {
                 ''
                 "You can specify extra args to pass to the find command.";
             };
-          }))
+          })
           ''
             Find arguments
 
@@ -1041,7 +1041,7 @@ in {
         popup_border_style = popupBorderStyle;
         resize_timer_interval = resizeTimerInterval;
         sort_case_insensitive = sortCaseInsensitive;
-        sort_function = mkRaw sortFunction;
+        sort_function = sortFunction;
         use_popups_for_input = usePopupsForInput;
         use_default_mappings = useDefaultMappings;
         source_selector = with sourceSelector; {
@@ -1154,10 +1154,7 @@ in {
           };
           find_by_full_path_words = findByFullPathWords;
           find_command = findCommand;
-          find_args =
-            if isString findArgs
-            then mkRaw findArgs
-            else findArgs;
+          find_args = findArgs;
           group_empty_dirs = groupEmptyDirs;
           search_limit = searchLimit;
           follow_current_file = followCurrentFile;
